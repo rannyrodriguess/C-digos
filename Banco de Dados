@@ -1,0 +1,70 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DatabaseConnection {
+
+    public static void main(String[] args) {
+        // ------------------------------
+        // 1º ETAPA: Criação de um Banco de Dados utilizando o MySQL WorkBench
+        // ------------------------------
+        // **NOTA**: Execute o seguinte SQL no MySQL Workbench ou outro cliente de banco de dados.
+        // 
+        // SQL para criação do banco de dados e tabela:
+        // 
+        // CREATE DATABASE IF NOT EXISTS `formulario-loja`; 
+        // USE `formulario-loja`; 
+        // CREATE TABLE `informacoes` 
+        // (
+        //     `id` INT AUTO_INCREMENT PRIMARY KEY,   
+        //     `nome` VARCHAR(45) NOT NULL,
+        //     `endereco` VARCHAR(150) NOT NULL,
+        //     `telefone` VARCHAR(15) NOT NULL,
+        //     `sexo` VARCHAR(15) NOT NULL,
+        //     `data_nasc` DATE NOT NULL,
+        //     `placa` VARCHAR(7) NOT NULL,
+        //     `marca_mod` VARCHAR(150) NOT NULL,
+        //     `ano_fab` DATE NOT NULL,
+        //     `vendedor` VARCHAR(45) NOT NULL,
+        //     `data_compra` DATE NOT NULL
+        // );
+        // 
+        // USE `formulario-loja`;
+        // INSERT INTO informacoes (id, nome, endereco, telefone, sexo, data_nasc, placa, marca_mod, ano_fab, vendedor, data_compra) 
+        // VALUES 
+        // ('1', 'João Silva', 'Rua Exemplo, 123', '123456789', 'Masculino', '1985-07-15', 'ABC1234', 'Fusca', 1975, 'Ana Souza', '2024-08-30'),
+        // ('2', 'Maria Oliveira', 'Av. Principal, 456', '987654321', 'Feminino', '1990-12-01', 'XYZ5678', 'Civic', 2020, 'Carlos Pereira', '2024-09-01'),
+        // ('3', 'Pedro Santos', 'Rua Secundária, 789', '555123456', 'Masculino', '1982-03-22', 'LMN9012', 'Corolla', 2018, 'Beatriz Lima', '2024-09-05');
+        // SELECT * FROM informacoes;
+
+        // ------------------------------
+        // 2º ETAPA: Configuração do Maven para o driver JDBC MySQL Connector/J
+        // ------------------------------
+        // **NOTA**: Adicione a seguinte dependência ao seu arquivo `pom.xml`:
+        // 
+        // <dependency>
+        //     <groupId>mysql</groupId>
+        //     <artifactId>mysql-connector-java</artifactId>
+        //     <version>8.0.33</version> 
+        // </dependency>
+
+        // ------------------------------
+        // 3º ETAPA: Configuração de Conexão com o Banco de Dados MySQL
+        // ------------------------------
+        // URL de conexão
+        String url = "jdbc:mysql://localhost:3306/formulario-loja"; 
+        // Usuário e senha do banco de dados
+        String user = "usuario"; 
+        String password = "senha"; 
+
+        // Conexão
+        try (Connection conn = DriverManager.getConnection(url, user, password)) {
+            if (conn != null) {
+                System.out.println("Conexão estabelecida com sucesso!");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao conectar com o banco de dados.");
+        }
+    }
+}
