@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário | Loja</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgba(231, 20, 65, 0.938);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .box {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 40px;
+            width: 35%;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+        fieldset {
+            border: 3px solid rgb(255, 255, 255);
+            padding: 10px;
+        }
+        legend {
+            border: 1px solid rgb(255, 255, 255);
+            padding: 10px;
+            text-align: center;
+            background-color: rgb(2, 2, 2);
+            border-radius: 8px;
+            color: white;
+        }
+        .inputBox {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .inputUser {
+            background: none;
+            border: none;
+            border-bottom: 1px solid white;
+            outline: none;
+            color: white;
+            font-size: 15px;
+            width: 100%;
+            letter-spacing: 2px;
+            padding: 8px;
+        } 
+        .labelInput {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            transition: .5s;
+        }
+        .inputUser:focus ~ .labelInput,
+        .inputUser:valid ~ .labelInput {
+            top: -20px;
+            font-size: 12px;
+            color: rgb(0, 0, 0);
+        }
+        #data_nascimento,
+        #data_compra {
+            border: none;
+            padding: 8px;
+            border-radius: 10px;
+            outline: none;
+            font-size: 15px;
+            width: 100%;
+        }
+        #submit {
+            background-color: rgba(243, 10, 61, 0.938);
+            width: 100%;
+            border: none;
+            padding: 15px;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        #submit:hover {
+            background-color: rgba(244, 13, 63, 0.938);
+        }
+        .genderGroup {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <form action="">
+            <fieldset>
+                <legend><b>Formulário de Clientes</b></legend>
+                <div class="inputBox">
+                    <input type="text" name="nome" id="nome" class="inputUser" required>
+                    <label for="nome" class="labelInput">Nome Completo</label>
+                </div>
+                
+                <div class="inputBox">
+                    <input type="text" name="endereco" id="endereco" class="inputUser" required>
+                    <label for="endereco" class="labelInput">Endereço</label>
+                </div>
+
+                <div class="inputBox">
+                    <input type="tel" name="telefone" id="telefone" class="inputUser" required>
+                    <label for="telefone" class="labelInput">Telefone</label>
+                </div>
+
+                <div class="genderGroup">
+                    <p>Sexo:</p>
+                    <input type="radio" id="feminino" name="genero" value="feminino" required>
+                    <label for="feminino">Feminino</label>
+                    <br>
+                    <input type="radio" id="masculino" name="genero" value="masculino" required>
+                    <label for="masculino">Masculino</label>
+                    <br>
+                    <input type="radio" id="outro" name="genero" value="outro" required>
+                    <label for="outro">Outro</label>
+                </div>
+
+                <div class="inputBox">
+                    <label for="data_nascimento"><b>Data de Nascimento:</b></label>
+                    <input type="date" name="data_nascimento" id="data_nascimento" required>
+                </div>
+
+                <fieldset>
+                    <legend><b>Dados do Veículo</b></legend>
+                    
+                    <div class="inputBox">
+                        <input type="text" name="placa" id="placa" class="inputUser" required>
+                        <label for="placa" class="labelInput">Placa</label>
+                    </div>
+
+                    <div class="inputBox">
+                        <input type="text" name="marca_modelo" id="marca_modelo" class="inputUser" required>
+                        <label for="marca_modelo" class="labelInput">Marca/Modelo</label>
+                    </div>
+
+                    <div class="inputBox">
+                        <input type="text" name="ano_fabricacao" id="ano_fabricacao" class="inputUser" required>
+                        <label for="ano_fabricacao" class="labelInput">Ano/Fabricação</label>
+                    </div>
+
+                    <div class="inputBox">
+                        <input type="text" name="vendedor" id="vendedor" class="inputUser" required>
+                        <label for="vendedor" class="labelInput">Vendedor</label>
+                    </div>
+
+                    <div class="inputBox">
+                        <label for="data_compra"><b>Data da Compra:</b></label>
+                        <input type="date" name="data_compra" id="data_compra" required>
+                    </div>
+                    
+                    <input type="submit" name="submit" id="submit" value="Enviar">
+                </fieldset>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>
