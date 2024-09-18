@@ -1,55 +1,50 @@
+-- Criação do Banco de Dados
+CREATE DATABASE IF NOT EXISTS formulario-loja;
+
+-- Selecionar o Banco de Dados
+USE formulario-loja;
+
+-- Criação da Tabela
+CREATE TABLE informacoes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(45) NOT NULL,
+    endereco VARCHAR(150) NOT NULL,
+    telefone VARCHAR(15) NOT NULL,
+    sexo VARCHAR(15) NOT NULL,
+    data_nasc DATE NOT NULL,
+    placa VARCHAR(7) NOT NULL,
+    marca_mod VARCHAR(150) NOT NULL,
+    ano_fab YEAR NOT NULL,
+    vendedor VARCHAR(45) NOT NULL,
+    data_compra DATE NOT NULL
+);
+
+-- Inserir Dados
+INSERT INTO informacoes (nome, endereco, telefone, sexo, data_nasc, placa, marca_mod, ano_fab, vendedor, data_compra) 
+VALUES 
+('João Silva', 'Rua Exemplo, 123', '123456789', 'Masculino', '1985-07-15', 'ABC1234', 'Fusca', 1975, 'Ana Souza', '2024-08-30'),
+('Maria Oliveira', 'Av. Principal, 456', '987654321', 'Feminino', '1990-12-01', 'XYZ5678', 'Civic', 2020, 'Carlos Pereira', '2024-09-01'),
+('Pedro Santos', 'Rua Secundária, 789', '555123456', 'Masculino', '1982-03-22', 'LMN9012', 'Corolla', 2018, 'Beatriz Lima', '2024-09-05');
+
+-- Visualizar Dados
+SELECT * FROM informacoes;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-public class DatabaseSetup {
-
+public class DatabaseConnection {
     public static void main(String[] args) {
         // URL de conexão
-        String url = "jdbc:mysql://localhost:3306/";
+        String url = "jdbc:mysql://localhost:3306/formulario-loja";
         // Usuário e senha do banco de dados
-        String user = "usuario"; 
-        String password = "senha"; 
+        String user = "exemplo"; 
+        String password = "exemplo"; 
 
+        // Conexão
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
             if (conn != null) {
                 System.out.println("Conexão estabelecida com sucesso!");
-
-                // Criar o banco de dados e a tabela
-                try (Statement stmt = conn.createStatement()) {
-                    // Criação do banco de dados e tabela
-                    String createDatabase = "CREATE DATABASE IF NOT EXISTS `formulario-loja`;";
-                    String useDatabase = "USE `formulario-loja`;";
-                    String createTable = "CREATE TABLE IF NOT EXISTS `informacoes` " +
-                            "(`id` INT AUTO_INCREMENT PRIMARY KEY, " +
-                            "`nome` VARCHAR(45) NOT NULL, " +
-                            "`endereco` VARCHAR(150) NOT NULL, " +
-                            "`telefone` VARCHAR(15) NOT NULL, " +
-                            "`sexo` VARCHAR(15) NOT NULL, " +
-                            "`data_nasc` DATE NOT NULL, " +
-                            "`placa` VARCHAR(7) NOT NULL, " +
-                            "`marca_mod` VARCHAR(150) NOT NULL, " +
-                            "`ano_fab` DATE NOT NULL, " +
-                            "`vendedor` VARCHAR(45) NOT NULL, " +
-                            "`data_compra` DATE NOT NULL);";
-                    String insertData = "INSERT INTO `informacoes` (`nome`, `endereco`, `telefone`, `sexo`, `data_nasc`, `placa`, `marca_mod`, `ano_fab`, `vendedor`, `data_compra`) " +
-                            "VALUES " +
-                            "('João Silva', 'Rua Exemplo, 123', '123456789', 'Masculino', '1985-07-15', 'ABC1234', 'Fusca', '1975-01-01', 'Ana Souza', '2024-08-30'), " +
-                            "('Maria Oliveira', 'Av. Principal, 456', '987654321', 'Feminino', '1990-12-01', 'XYZ5678', 'Civic', '2020-01-01', 'Carlos Pereira', '2024-09-01'), " +
-                            "('Pedro Santos', 'Rua Secundária, 789', '555123456', 'Masculino', '1982-03-22', 'LMN9012', 'Corolla', '2018-01-01', 'Beatriz Lima', '2024-09-05');";
-
-                    // Executa os comandos
-                    stmt.executeUpdate(createDatabase);
-                    stmt.executeUpdate(useDatabase);
-                    stmt.executeUpdate(createTable);
-                    stmt.executeUpdate(insertData);
-
-                    System.out.println("Banco de dados e tabela criados e dados inseridos com sucesso!");
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    System.out.println("Erro ao criar banco de dados e tabela.");
-                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -57,7 +52,7 @@ public class DatabaseSetup {
         }
     }
 }
-// Driver JDBC MySQL Connector/J e Maven com pom.xml
+-- Driver JDBC MySQL Connector/J e Maven com pom.xml
 <dependency>
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
